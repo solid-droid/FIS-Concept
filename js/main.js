@@ -16,8 +16,14 @@ function init(){
 
     reset=document.getElementById('Reset');
     FastClick.attach(reset);
-    reset.addEventListener('touchend', function(e) {resetLayout();}, false);
-    reset.addEventListener('click', function(e) {resetLayout();}, false);
+    reset.addEventListener('touchend', function(e) {
+        if(!Document.fullscreen)
+        document.documentElement.requestFullscreen();
+        resetLayout();}, false);
+    reset.addEventListener('click', function(e) {
+        if(!Document.fullscreen)
+        document.documentElement.requestFullscreen();
+        resetLayout();}, false);
 
 
     line=new LeaderLine(
@@ -42,7 +48,7 @@ function init(){
       });
 
 
-     document.documentElement.requestFullscreen();
+      
      //document.getElementById('Reset').addEventListener("touchstart", resetLayout());
       
 };
