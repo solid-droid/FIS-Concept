@@ -11,8 +11,8 @@
 </head>
 <body>
 <div class="layout">
-    <button id="label1" class="Label Menu-Button">Label</button>
-    <button id="label2" class="Label Menu-Button">Label</button>
+    <button id="label1" class="Label1 Menu-Button">Label</button>
+    <button id="label2" class="Label1 Menu-Button">Label</button>
 </div>
 <div class="drag-area">
     <div class="FullMenu">
@@ -23,8 +23,10 @@
         <button id="menu4" onmousedown="enablesubmenu('AssetTree')"  class="btn"><i class="fas fa-project-diagram"></i></button>
         <button id="menu5" onmousedown="enablesubmenu('Settings')"  class="btn"><i class="fas fa-cogs"></i></button>
     </div>
-    <button onmousedown="closesubmenu()" id="btn-menu-close"><i class="far fa-times-circle"></i></button>
+    
     <div id="Tools" class="sub-menu">
+        
+        <button onmousedown="closesubmenu()" id="btn-menu-close"><i class="far fa-times-circle"></i></button>
         <p>Tools</p>
         <button id="AssetBox" class="AssetBox Menu-Button">Asset Box</button>
         <button id="Label" class="Label Menu-Button">Label</button>
@@ -32,6 +34,8 @@
         <button id="Table" class="Table Menu-Button">Table</button>
     </div>
     <div id="layers" class="sub-menu">
+       
+        <button onmousedown="closesubmenu()" id="btn-menu-close"><i class="far fa-times-circle"></i></button>
         <p>Layers</p>
         <button id="newLayer" class="Menu-Button newLayer">Create Layer</button>
         <dl class="layerlist">
@@ -41,13 +45,19 @@
         </dl> 
     </div>
     <div id="Notifications" class="sub-menu">
+        
+        <button onmousedown="closesubmenu()" id="btn-menu-close"><i class="far fa-times-circle"></i></button>
         <p>Notifications</p>
     </div>
     <div id="AssetTree" class="sub-menu">
+        
+        <button onmousedown="closesubmenu()" id="btn-menu-close"><i class="far fa-times-circle"></i></button>
         <p>Asset Tree</p>
     </div>
     <div id="Settings" class="sub-menu">
-        <p>Settings</p>    
+        
+        <button onmousedown="closesubmenu()" id="btn-menu-close"><i class="far fa-times-circle"></i></button>  
+        <p>Settings</p>  
     </div>
     </div>
     <div class="Header">

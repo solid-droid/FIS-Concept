@@ -20,10 +20,11 @@ html,body{
     z-index: 1;
 }
 .drag-area{
-  height:100vh;
+  /* height:100vh; */
+  width: 100vh;
   top:0;
   left:0;
-  position: fixed;
+  position: absolute;
   background-color: rgba(255, 255, 255, 0);
   z-index: 2;
 }
@@ -60,11 +61,12 @@ html,body{
                 inset 2px 2px 4px rgba(0, 0, 0, .15);
     position: fixed;
 }
+
 .menu{
-    width  : 60px;
-    height : 300px;
+    width  : 9% !important;
+    height : 300px !important;
     position: absolute ;
-    top:15%;
+    margin-top:15%;
     background-color: #f2f3f7;
     border-radius: 15px;
     box-shadow: 9px 9px 16px rgb(163,177,198,0.6),
@@ -72,9 +74,11 @@ html,body{
     z-index: 0;
 }
 
+
+
 .btn{
-    width  : 55px;
-    height : 59px;
+    width  : 90%;
+    height : 20%;
     font-size: 24px;
     background-color:inherit;
     border-radius:50px;
@@ -84,9 +88,9 @@ html,body{
 .sub-menu
 {
 position: absolute;
-top     :  15%;
-left    :  65px;
-width   :  200px;
+margin-top:15%;
+left    :  10%;
+width   :  27%;
 height  :  600px;
 padding :  10px ;
 padding-left: 0 !important;
@@ -103,8 +107,8 @@ text-align: center;
 }
 #btn-menu-close{
     position: absolute;
-    top     :  16%;
-    left    :  240px;
+    margin-top:0;
+    right    :  10px;
     font-size: 20px;
     border-width: 0;
     z-index: 2;
@@ -112,18 +116,31 @@ text-align: center;
     background-color: #f2f3f700;
 }
 
-
+.Label1{
+    width  : 200px!important;
+    height : 70px!important;
+}
 .Label{
-    width  : 170px;
-    height : 100px;
+    width  : 80%;
+    height : 15%;
 }
 .AssetBox{
-    width  : 170px;
-    height : 50px;
+    width  : 80%;
+    height : 10%;
 }
 .Graph,.Table{
-    width  : 170px;
-    height : 150px;
+    width  : 80%;
+    height : 25%;
+}
+@media only screen and (max-width: 750px)
+{
+    .Graph,.Table{
+        width  : 80%;
+        height : 20%;
+    }
+    .sub-menu{
+        height:400px;
+    }
 }
 .newLayer{
 width: 150px;
@@ -172,11 +189,18 @@ margin-top: 0 !important;
 }
 .Reset{
     bottom     : 20px !important;
-    padding : 5px;
-    width: 50px;
-    height: 50px;
+    width: 5%;
+    padding-top:1%;
+    padding-bottom: 1%;
     font-size: 24px;
     right   : 20px !important; 
     position: fixed;
 }
-  
+@media only screen and (max-width: 750px)
+{
+    .Reset{
+        width: 10%;
+        padding-top:2%;
+        padding-bottom: 2%;
+    }
+}
