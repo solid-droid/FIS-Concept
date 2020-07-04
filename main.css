@@ -63,7 +63,7 @@ html,body{
 }
 
 .menu{
-    width  : 9% !important;
+    width  : 9% ;
     height : 300px !important;
     position: absolute ;
     margin-top:15%;
@@ -142,7 +142,7 @@ text-align: center;
         height:400px;
     }
     .menu{
-        width  : 15% !important;
+        width  : 25% !important;
     }
 }
 .newLayer{
