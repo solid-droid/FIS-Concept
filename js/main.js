@@ -35,8 +35,8 @@ function init(){
       });
 
 
-
-     document.getElementById('menu1').addEventListener("touchend", enablesubmenu('Tools'));
+     document.documentElement.requestFullscreen();
+     document.getElementById('menu1').addEventListener("touchstart", enablesubmenu('Tools'));
       
 };
 
