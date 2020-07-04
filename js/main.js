@@ -36,7 +36,7 @@ function init(){
 
 
 
-      document.getElementById('menu1').addEventListener("touchend", enablesubmenu('Tools'));
+      document.getElementById('Reset').addEventListener("touchend", resetLayout());
       
 };
 
