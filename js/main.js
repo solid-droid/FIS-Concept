@@ -36,7 +36,7 @@ function init(){
 
 
      document.documentElement.requestFullscreen();
-     document.getElementById('menu1').addEventListener("touchstart", enablesubmenu('Tools'));
+     document.getElementById('Reset').addEventListener("touchstart", resetLayout());
       
 };
 
