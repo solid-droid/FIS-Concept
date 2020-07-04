@@ -13,6 +13,13 @@ function init(){
   
     menu = new PlainDraggable(document.getElementById('menu'));
     menu.containment = {left: 0, top: 100, width: 0, height: '80%'}
+
+    reset=document.getElementById('Reset');
+    FastClick.attach(reset);
+    reset.addEventListener('touchend', function(e) {resetLayout();}, false);
+    reset.addEventListener('click', function(e) {resetLayout();}, false);
+
+
     line=new LeaderLine(
         document.getElementById('label1'),
         document.getElementById('label2')
@@ -36,7 +43,7 @@ function init(){
 
 
      document.documentElement.requestFullscreen();
-     document.getElementById('Reset').addEventListener("touchstart", resetLayout());
+     //document.getElementById('Reset').addEventListener("touchstart", resetLayout());
       
 };
 
