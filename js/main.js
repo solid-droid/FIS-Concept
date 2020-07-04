@@ -33,6 +33,11 @@ function init(){
       layout.on('transform', function(e) {
         line.position();
       });
+
+
+
+      document.getElementById('menu1').addEventListener("touchend", enablesubmenu('Tools'));
+      
 };
 
 function update()
@@ -62,3 +67,4 @@ function closesubmenu()
         document.getElementById(i).style.visibility = "hidden";
         document.getElementById("btn-menu-close").style.visibility = "hidden";
 };
+
