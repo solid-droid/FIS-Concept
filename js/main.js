@@ -24,7 +24,52 @@ function init(){
         if(!Document.fullscreen)
         document.documentElement.requestFullscreen();
         resetLayout();}, false);
+     
+    itm=document.getElementById("btn-menu-close");
+    FastClick.attach(itm);
+    itm.addEventListener('touchend', function(e) {
+        closesubmenu();}, false);
+    itm.addEventListener('click', function(e) {
+        closesubmenu();}, false);
 
+    
+    
+    FastClick.attach(document.getElementById(menuID[0]+"btn"));
+    document.getElementById(menuID[0]+"btn").addEventListener('touchend', function(e) {
+        enablesubmenu(menuID[0]);}, false);
+    document.getElementById(menuID[0]+"btn").addEventListener('click', function(e) {
+        enablesubmenu(menuID[0]);}, false);
+
+    FastClick.attach(document.getElementById(menuID[1]+"btn"));
+    document.getElementById(menuID[1]+"btn").addEventListener('touchend', function(e) {
+        enablesubmenu(menuID[1]);}, false);
+    document.getElementById(menuID[1]+"btn").addEventListener('click', function(e) {
+        enablesubmenu(menuID[1]);}, false);
+
+    FastClick.attach(document.getElementById(menuID[2]+"btn"));
+    document.getElementById(menuID[2]+"btn").addEventListener('touchend', function(e) {
+        enablesubmenu(menuID[2]);}, false);
+    document.getElementById(menuID[2]+"btn").addEventListener('click', function(e) {
+        enablesubmenu(menuID[2]);}, false);
+
+    FastClick.attach(document.getElementById(menuID[3]+"btn"));
+    document.getElementById(menuID[3]+"btn").addEventListener('touchend', function(e) {
+        enablesubmenu(menuID[3]);}, false);
+    document.getElementById(menuID[3]+"btn").addEventListener('click', function(e) {
+        enablesubmenu(menuID[3]);}, false);
+
+    FastClick.attach(document.getElementById(menuID[4]+"btn"));
+    document.getElementById(menuID[4]+"btn").addEventListener('touchend', function(e) {
+        enablesubmenu(menuID[4]);}, false);
+    document.getElementById(menuID[4]+"btn").addEventListener('click', function(e) {
+        enablesubmenu(menuID[4]);}, false);
+    
+
+        
+
+
+  
+    
 
     line=new LeaderLine(
         document.getElementById('label1'),
@@ -49,7 +94,6 @@ function init(){
 
 
       
-     //document.getElementById('Reset').addEventListener("touchstart", resetLayout());
       
 };
 
@@ -69,6 +113,7 @@ function enablesubmenu(id){
     var i;
     for (i of menuID)
         document.getElementById(i).style.visibility = "hidden";
+        console.log(id);
     document.getElementById(id).style.visibility = "visible";
     document.getElementById("btn-menu-close").style.visibility = "visible";
 };
