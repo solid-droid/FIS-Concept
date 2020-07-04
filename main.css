@@ -141,6 +141,9 @@ text-align: center;
     .sub-menu{
         height:400px;
     }
+    .menu{
+        width  : 12% !important;
+    }
 }
 .newLayer{
 width: 150px;
