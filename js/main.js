@@ -6,7 +6,7 @@ Final Update: 6-JUL-20
 let menuID=["Tools","layers","Notifications","AssetTree","Settings"];
 window.addEventListener('load', function() {init();});
 let layout;
-let line;
+let line1, line2;
 function init(){
 
     // 'use strict';
@@ -17,12 +17,12 @@ function init(){
     reset=document.getElementById('Reset');
     FastClick.attach(reset);
     reset.addEventListener('touchend', function(e) {
-        if(!Document.fullscreen)
-        document.documentElement.requestFullscreen();
+        // if(!Document.fullscreen)
+        // document.documentElement.requestFullscreen();
         resetLayout();}, false);
     reset.addEventListener('click', function(e) {
-        if(!Document.fullscreen)
-        document.documentElement.requestFullscreen();
+        // if(!Document.fullscreen)
+        // document.documentElement.requestFullscreen();
         resetLayout();}, false);
      
     itm=document.getElementById("btn-menu-close");
@@ -71,12 +71,17 @@ function init(){
   
     
 
-    line=new LeaderLine(
+    line1=new LeaderLine(
         document.getElementById('label1'),
         document.getElementById('label2')
       );
-    label1 = new PlainDraggable(document.getElementById('label1'),{onDragEnd: function() { line.position(); }});
-    label2 = new PlainDraggable(document.getElementById('label2'),{onDragEnd: function() { line.position(); }});
+      line2=new LeaderLine(
+        document.getElementById('label2'),
+        document.getElementById('label3')
+      );
+    label1 = new PlainDraggable(document.getElementById('label1'),{onDragEnd: function() { line1.position(); }});
+    label2 = new PlainDraggable(document.getElementById('label2'),{onDragEnd: function() { line1.position();line2.position(); }});
+    label2 = new PlainDraggable(document.getElementById('label3'),{onDragEnd: function() { line2.position(); }});
 
     let area = document.querySelector('.layout');
     layout= panzoom(area,{
@@ -89,7 +94,7 @@ function init(){
       });
     
       layout.on('transform', function(e) {
-        line.position();
+        update();
       });
 
 
@@ -99,7 +104,8 @@ function init(){
 
 function update()
 {
-    line.position();
+    line1.position();
+    line2.position();
 }
 
 function resetLayout()
