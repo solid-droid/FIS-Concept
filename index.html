@@ -3,19 +3,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 <title>FORD-AEP</title>
-<script src="js/plain-draggable.min.js"></script>
-<script src="js/panzoom.min.js"></script>
-<script src="js/leader-line.min.js"></script>
-<script src="js/fastclick.js"></script>
-<script src="js/main.js"></script>
-<link rel="stylesheet" href="main.css">
+<script type="text/javascript" src="js/plain-draggable.min.js"></script>
+
+<script type="text/javascript" src="js/panzoom.min.js"></script>
+<script type="text/javascript" src="js/leader-line.min.js"></script>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.edittable.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/MenuEvents.js"></script>
+<script type="text/javascript" src="js/ToolCreator.js"></script>
+<script type="text/javascript" src="js/handleREST.js"></script>
+<script type="text/javascript" src="js/ToolProperties.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/tabulator.min.js"></script>
+<script type="text/javascript" src="js/Hierarchy.js"></script>
+<script type="text/javascript" src="js/IncidentEventList.js"></script>
+
+<!-- <script type="text/javascript" src="js/jquery.ui.autocomplete.scroll.min.js"></script> -->
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/tabulator.min.css">
+<link rel="stylesheet" href="css/jquery-ui.min.css">
+<link rel="stylesheet" href="css/jquery.edittable.min.css">
+<!-- <link rel="stylesheet" href="Menu.scss"> -->
 <script src="https://kit.fontawesome.com/e699fb7a9b.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="layout">
-    <button id="label1" class="Label1 Menu-Button">Machine 1</button>
-    <button id="label2" class="Label1 Menu-Button">Machine 2</button>
-    <button id="label3" class="Label1 Menu-Button">Machine 3</button>
+<div id="layout" class="layout">
+    <!-- <button id="propbtn"class="propbtn">Properties</button> -->
+    <!-- <button id="label1" class="Label1 " style="text-align: center;">Machine 1</button> -->
+   <!-- <div id="table-wrapper" style="width: 600px; height: 340px;">
+    <div style="position: absolute; padding-left:40px;">
+        <button id="assetToggle"style="position: absolute; top:-10px;height:28px;  margin-left:165px;width: 90px;">Asset</button>
+        <button id="tableClear" style="position: absolute; top:-10px;height:28px;  margin-left:260px;width: 90px;">Clear</button>
+        <button id="tableRefresh" style="position: absolute; top:-10px;height:28px;  margin-left:355px;width: 90px;">Refresh</button>
+        <button class="drag"style="position: absolute; top:-10px;height:28px;  margin-left:450px;width: 90px;">Drag</button>
+        <p id="status" style="font-size: 13px;position: absolute; top:-15px;height:28px;  margin-left:550px;width:300px">Status: OK</p>
+   </div>
+    <div id="table1" style="width: 200px;position: absolute; top:25px;"></div>
+    <div id="table-wrapper1" style="width: auto; position: absolute; top:25px;margin-left:205px;border-style: solid;border-width:2px ;">
+    <div id="table2" style="width: 100%;"></div></div>
+    </div> -->
 </div>
 <div class="drag-area">
     <div class="FullMenu">
@@ -26,10 +53,10 @@
         <button id="AssetTreebtn"       class="btn"><i class="fas fa-project-diagram"></i></button>
         <button id="Settingsbtn"        class="btn"><i class="fas fa-cogs"></i></button>
     </div>
-    
+
     <div id="Tools" class="sub-menu">
         
-        <button id="btn-menu-close"><i class="far fa-times-circle"></i></button>
+        <!-- <button id="btn-menu-close"><i class="far fa-times-circle"></i></button> -->
         <p>Tools</p>
         <button id="AssetBox" class="AssetBox Menu-Button">Asset Box</button>
         <button id="Label" class="Label Menu-Button">Label</button>
@@ -38,7 +65,7 @@
     </div>
     <div id="layers" class="sub-menu">
        
-        <button id="btn-menu-close"><i class="far fa-times-circle"></i></button>
+        <!-- <button id="btn-menu-close"><i class="far fa-times-circle"></i></button> -->
         <p>Layers</p>
         <button id="newLayer" class="Menu-Button newLayer">Create Layer</button>
         <dl class="layerlist">
@@ -49,26 +76,42 @@
     </div>
     <div id="Notifications" class="sub-menu">
         
-        <button id="btn-menu-close"><i class="far fa-times-circle"></i></button>
+        <!-- <button id="btn-menu-close"><i class="far fa-times-circle"></i></button> -->
         <p>Notifications</p>
     </div>
     <div id="AssetTree" class="sub-menu">
         
-        <button id="btn-menu-close"><i class="far fa-times-circle"></i></button>
+        <!-- <button id="btn-menu-close"><i class="far fa-times-circle"></i></button> -->
         <p>Asset Tree</p>
     </div>
     <div id="Settings" class="sub-menu">
         
-        <button id="btn-menu-close"><i class="far fa-times-circle"></i></button>  
+        <!-- <button id="btn-menu-close"><i class="far fa-times-circle"></i></button>   -->
         <p>Settings</p>  
     </div>
     </div>
     <div class="Header">
         <img src="media/fordlogo.png" class="logo">
-        <p class="header-text">Factory Information System Concept</p>
+        <p class="header-text">AEP Monitoring Dashboard Concept</p>
 
     </div>
     <p class="CDSID">CDSID : JNIKHIL</p>
+    <div id="properties" class="Properties">
+        <p style="margin-top: 10px;margin-left: 15px; position: absolute;">Properties</p>
+        <button type="button" class="neumorphic-btn neumorphic-checkbox"></button>
+        <button id="save"class="save"><i class="fas fa-save"></i></button>
+        <div id="options" class="options">
+            <p id="option0" class="optionTag">Asset ID</p>
+            <input id="tags0"dir="rtl" class="optionInput"  value="Asset ID" >
+            <p id="option1" class="optionTag">Path</p>
+            <input id="tags1" dir="rtl"class="optionInput"  value="Asset Name">
+            <p id="option2" class="optionTag">Alias</p>
+            <input id="tags2" dir="rtl"class="optionInput"  value="Asset Alias">
+            <p id="option3" class="optionTag">Color</p>
+            <input id="tags3" dir="rtl"class="optionInput"  value="Asset State">
+            <div id="edittable" ></div>
+        </div>
+    </div>
     <button id="Reset" class="Reset Menu-Button" ><i class="fas fa-compress"></i></button>
         
 </div>
