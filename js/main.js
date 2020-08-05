@@ -1,112 +1,79 @@
 /* ///////////////////////////////////////////
 Next-Gen Factory Information System concept 
 Author: Nikhil M Jeby
-Final Update: 6-JUL-20
+Final Update: 31-JUL-20
 ///////////////////////////////////////////// */
-let menuID=["Tools","layers","Notifications","AssetTree","Settings"];
-window.addEventListener('load', function() {init();});
-let layout;
-let line1, line2;
+
+let menuID=["#Tools","#layers","#Notifications","#AssetTree","#Settings"];
+let layout, pstate=0, cid=0;
+let REST_trigger;
+let REST_trigger_interval=1000;
+let AssetTree_REST=[];
+let Assetbox=[], Label=[], Table=[];
+let dataTable=[];
+let nameList=[],referenceList=[], OnscreenList=[], OnscreenLabelList=[],OnscreenAssetList=[];
+let table,selectedAsset,selectedPath;
+let __assetTree=[];
+
+// Table DATA SHAPE
+let DS_events = [
+  {title:"Detailed View - Events", columns:[
+      {title:"Event Name "    ,field:"eventName"    ,headerFilter:"input", headerFilterPlaceholder:"Filter..",minWidth:200  },
+      {title:"Value"          ,field:"value"        ,headerFilter:"input", headerFilterPlaceholder:"Filter.."  },
+      {title:"Record Time"    , field:"recordTime"  ,headerFilter:"input", headerFilterPlaceholder:"Filter..",minWidth:300  },
+  ]}];
+let DS_incidents = [
+      {title:"Detailed View - Incidents", columns:[
+          {title:"Catagory "      ,field:"incidentCategory"   ,minWidth:200 ,headerFilter:"input", headerFilterPlaceholder:"Filter.."},
+          {title:"Description"    ,field:"incidentDescription" ,headerFilter:"input", headerFilterPlaceholder:"Filter.."   },
+          {title:"Duration"       ,field:"duration"            ,headerFilter:"input", headerFilterPlaceholder:"Filter.."},
+          {title:"Start Time"     ,field:"startTime"           ,headerFilter:"input", headerFilterPlaceholder:"Filter.."},
+          {title:"End Time"       ,field:"endTime"             ,headerFilter:"input", headerFilterPlaceholder:"Filter.."},    
+      ]}];
+
+//Standard Property list for Autocompletion in label properties.
+let PropertyList=["JPH ","Good Cycles ","Bad Cycles "];
+
+//call function init() when all files are loaded
+window.addEventListener('load', init);
+
+
+
 function init(){
+ //creates assetTree-Hierarchy.js
+    REST_AssetTree();
 
-    // 'use strict';
-  
-    menu = new PlainDraggable(document.getElementById('menu'));
-    menu.containment = {left: 0, top: 100, width: 0, height: '80%'}
+//Rest service to fetch path and referance data of all the assets in the plant-HandleRest.js
+    initRESTservices();
 
-    reset=document.getElementById('Reset');
-    FastClick.attach(reset);
-    reset.addEventListener('touchend', function(e) {
-        // if(!Document.fullscreen)
-        // document.documentElement.requestFullscreen();
-        resetLayout();}, false);
-    reset.addEventListener('click', function(e) {
-        // if(!Document.fullscreen)
-        // document.documentElement.requestFullscreen();
-        resetLayout();}, false);
-     
-    itm=document.getElementById("btn-menu-close");
-    FastClick.attach(itm);
-    itm.addEventListener('touchend', function(e) {
-        closesubmenu();}, false);
-    itm.addEventListener('click', function(e) {
-        closesubmenu();}, false);
+//Initiates on click and on touch event listeners for menu buttons-MenuEvents.js
+    initMenu();
 
-    
-    
-    FastClick.attach(document.getElementById(menuID[0]+"btn"));
-    document.getElementById(menuID[0]+"btn").addEventListener('touchend', function(e) {
-        enablesubmenu(menuID[0]);}, false);
-    document.getElementById(menuID[0]+"btn").addEventListener('click', function(e) {
-        enablesubmenu(menuID[0]);}, false);
+//Initiates on click and on touch event listeners for reset button-MenuEvents.js
+    initReset();
 
-    FastClick.attach(document.getElementById(menuID[1]+"btn"));
-    document.getElementById(menuID[1]+"btn").addEventListener('touchend', function(e) {
-        enablesubmenu(menuID[1]);}, false);
-    document.getElementById(menuID[1]+"btn").addEventListener('click', function(e) {
-        enablesubmenu(menuID[1]);}, false);
+//Initiates inputfields and buttons inside properties-ToolProperties.js
+    initPropertiesContent();
 
-    FastClick.attach(document.getElementById(menuID[2]+"btn"));
-    document.getElementById(menuID[2]+"btn").addEventListener('touchend', function(e) {
-        enablesubmenu(menuID[2]);}, false);
-    document.getElementById(menuID[2]+"btn").addEventListener('click', function(e) {
-        enablesubmenu(menuID[2]);}, false);
+//Initiates property window effects and events-MenuEvents.js
+    initProperties();
 
-    FastClick.attach(document.getElementById(menuID[3]+"btn"));
-    document.getElementById(menuID[3]+"btn").addEventListener('touchend', function(e) {
-        enablesubmenu(menuID[3]);}, false);
-    document.getElementById(menuID[3]+"btn").addEventListener('click', function(e) {
-        enablesubmenu(menuID[3]);}, false);
+//Initiates on click and on touch event listeners for tools inside tools menu-ToolCreater.js
+    initTools();
 
-    FastClick.attach(document.getElementById(menuID[4]+"btn"));
-    document.getElementById(menuID[4]+"btn").addEventListener('touchend', function(e) {
-        enablesubmenu(menuID[4]);}, false);
-    document.getElementById(menuID[4]+"btn").addEventListener('click', function(e) {
-        enablesubmenu(menuID[4]);}, false);
-    
+//Initiates pan zoom capabilities to the screen.
+    initPanZoom();
+ 
+//Temporary function to change color of assets-ToolProperties.js
+    REST_trigger = setInterval(restcall, REST_trigger_interval);
 
-        
+//function will be triggered when all ajax calls are complete.
+    $( document ).ajaxStop(function() {
+      for(i=0;i<Table.length;++i)
+        $("#status"+String(i)).text("Loading Complete.");
+    });
 
-
-  
-    
-
-    line1=new LeaderLine(
-        document.getElementById('label1'),
-        document.getElementById('label2')
-      );
-      line2=new LeaderLine(
-        document.getElementById('label2'),
-        document.getElementById('label3')
-      );
-    label1 = new PlainDraggable(document.getElementById('label1'),{onDragEnd: function() { line1.position(); }});
-    label2 = new PlainDraggable(document.getElementById('label2'),{onDragEnd: function() { line1.position();line2.position(); }});
-    label2 = new PlainDraggable(document.getElementById('label3'),{onDragEnd: function() { line2.position(); }});
-
-    let area = document.querySelector('.layout');
-    layout= panzoom(area,{
-        bounds: {
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-          }
-      });
-    
-      layout.on('transform', function(e) {
-        update();
-      });
-
-
-      
-      
 };
-
-function update()
-{
-    line1.position();
-    line2.position();
-}
 
 function resetLayout()
 {
@@ -115,20 +82,25 @@ function resetLayout()
 };
 
 
-function enablesubmenu(id){
-    var i;
-    for (i of menuID)
-        document.getElementById(i).style.visibility = "hidden";
-        console.log(id);
-    document.getElementById(id).style.visibility = "visible";
-    document.getElementById("btn-menu-close").style.visibility = "visible";
-};
- 
-function closesubmenu()
+function initPanZoom()
 {
-    var i;
-    for (i of menuID)
-        document.getElementById(i).style.visibility = "hidden";
-        document.getElementById("btn-menu-close").style.visibility = "hidden";
-};
+    let area = document.querySelector('.layout');
+    
+    layout= panzoom(area,{
+        bounds: {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+          },
+        
+        zoomDoubleClickSpeed: 1,
+        
+        filterKey: function() {
+            return true;
+          }
+        });
+     
+      layout.on('transform', updateLine);
+}
 

@@ -1,0 +1,459 @@
+html,body{
+    background-color:   #f2f2f2;
+    margin:0px;
+    height:100%;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color: grey;
+}
+  
+  .logo{
+      width  : 110px;
+      height : 50px; 
+      position: absolute;
+      z-index: 0;
+      
+  }
+  .layout{
+      height: 20000px;
+      width: 20000px;
+      top:0;
+      left:0;
+      z-index: 1;
+      
+  }
+
+  .drag-area{
+    /* height:100vh; */
+    width: 100vh;
+    top:0;
+    left:0;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 2;
+  }
+  .Header{
+      width  : 500px;
+      height : 50px; 
+      /* border-style: solid; */
+      position: fixed;
+      font-size: 20px;
+      font-weight: 800;
+      top    : 1%;
+      left   : 1%;
+  }
+  .header-text
+  {
+      top    : -5px;
+      left   : 115px; 
+      position: absolute;
+      
+  }
+  .CDSID
+  {
+      top    : 0 !important;
+      padding: 5px;
+      right   : 10px !important; 
+      text-align:center;
+      border-style: solid;
+      border-width: 3px;
+      border-color: rgb(72, 201, 72);
+      border-radius: 5px;
+      box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+                  inset -2px -2px 4px rgba(255, 255, 255, .5),
+                  inset 2px 2px 2px rgba(255, 255, 255, .075),
+                  inset 2px 2px 4px rgba(0, 0, 0, .15);
+      position: fixed;
+  }
+  
+  .menu{
+      width  : 7% ;
+      height : 250px !important;
+      position: absolute ;
+      margin-top:15%;
+      background-color: #f2f3f7;
+      border-radius: 15px;
+      box-shadow: 9px 9px 16px rgb(163,177,198,0.6),
+       -9px -9px 16px rgba(255,255,255, 0.5);
+      z-index: 0;
+  }
+  
+  
+  
+  .btn{
+      width  : 90%;
+      height : 20%;
+      font-size: 24px;
+      background-color:inherit;
+      border-radius:50px;
+      border-style: none;
+  }
+  
+  .sub-menu
+  {
+  position: absolute;
+  display:none;
+  margin-top:15%;
+  left    :  10%;
+  width   :  27%;
+  height  :  600px;
+  padding :  10px ;
+  padding-left: 0 !important;
+  background-color: #f2f3f7;
+      border-radius: 15px;
+      box-shadow: 9px 9px 16px rgb(163,177,198,0.6),
+       -9px -9px 16px rgba(255,255,255, 0.5);
+  
+  text-align: center;
+  }
+  
+  
+  #btn-menu-close{
+      position: absolute;
+      margin-top:0;
+      right    :  10px;
+      font-size: 20px;
+      border-width: 0;
+      z-index: 2;
+      visibility: hidden;
+      background-color: #f2f3f700;
+  }
+  .AssetGlobal{
+  top:50px;
+  left:50px;
+  position: absolute;
+  transform: translate(50vh, 50vh);
+  }
+
+  .LabelGlobal{
+    top:50px;
+    left:50px;
+    position: absolute;
+    transform: translate(50vh, 50vh);
+    }
+
+  .AssetGlobal{
+      width  : 100px;
+      /* height : 40px; */
+      border-style: solid ;
+      color: white;
+      text-decoration: rgba(255, 255, 255, .5);
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-width: 4px ;
+      border-color: rgba(65, 68, 65, 0.438) ;
+      border-radius: .5rem;
+      box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                  -2px -2px 4px rgba(255, 255, 255, .4),
+                  2px 2px 2px rgba(255, 255, 255, .05),
+                  2px 2px 4px rgba(0, 0, 0, .1);
+  }
+
+  .LabelGlobal{
+    width  : 200px;
+    /* min-height : 50px; */
+    border-style: solid ;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-width: 4px ;
+    background-color: #efefef;
+    border-color: rgba(65, 68, 65, 0.438) ;
+    border-radius: .5rem;
+    box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                -2px -2px 4px rgba(255, 255, 255, .4),
+                2px 2px 2px rgba(255, 255, 255, .05),
+                2px 2px 4px rgba(0, 0, 0, .1);
+}
+  .propbtn:active{
+      transition:all .6s cubic-bezier(0.19, 1, 0.22, 1);
+      width:400px; 
+      height:400px;
+  
+  }
+  
+  .Label{
+      width  : 80%;
+      height : 15%;
+  }
+  .AssetBox{
+      width  : 80%;
+      height : 10%;
+  }
+  .Graph,.Table{
+      width  : 80%;
+      height : 25%;
+  }
+  @media only screen and (max-width: 750px)
+  {
+      .Graph,.Table{
+          width  : 80%;
+          height : 20%;
+      }
+      .sub-menu{
+          height:400px;
+      }
+      .menu{
+          width  : 50px;
+      }
+  }
+  .newLayer{
+  width: 150px;
+  height:30px;
+  margin-top: 0 !important;
+  }
+  .Menu-Button {
+      margin-top: 15px;
+      font-size: 15px;
+      background: #efefef;
+      border: none;
+      border-radius: .5rem;
+      color: #444;
+      /* padding-top: 10%; */
+      /* letter-spacing: .2rem; */
+      text-align: center;
+      outline: none;
+      cursor: pointer;
+      transition: .2s ease-in-out;
+      box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                  -6px -6px 10px rgba(255, 255, 255, .5),
+                  6px 6px 8px rgba(255, 255, 255, .075),
+                  6px 6px 10px rgba(0, 0, 0, .15);
+    }
+    .btn:hover,.Menu-Button:hover {
+      box-shadow: -2px -2px 6px rgba(255, 255, 255, .6),
+                  -2px -2px 4px rgba(255, 255, 255, .4),
+                  2px 2px 2px rgba(255, 255, 255, .05),
+                  2px 2px 4px rgba(0, 0, 0, .1);
+    }
+    .btn:active,.Menu-Button:active,.AssetGlobal:active,.LabelGlobal:active {
+      box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+                  inset -2px -2px 4px rgba(255, 255, 255, .5),
+                  inset 2px 2px 2px rgba(255, 255, 255, .075),
+                  inset 2px 2px 4px rgba(0, 0, 0, .15);
+    }
+  
+  .layerlist
+  {
+      padding-left: 10px;
+      text-align: left;
+  }
+  .layeritem
+  {
+      margin-top:10px;
+  }
+  .Reset{
+      bottom     : 20px !important;
+      width: 5%;
+      padding-top:1%;
+      padding-bottom: 1%;
+      font-size: 24px;
+      right   : 20px !important; 
+      position: fixed;
+  }
+  @media only screen and (max-width: 750px)
+  {
+      .Reset{
+          width: 10%;
+          padding-top:2%;
+          padding-bottom: 2%;
+      }
+  }
+  /* ///////////////////////////////////////////////// */
+  
+  .Properties {
+      top    : 70px !important;
+      padding: 5px;
+      right   : 10px !important; 
+      position: fixed;
+      width:120px;
+      height: 40px;
+      background-color: #efefef;
+      border: none;
+      border-radius: .5rem;
+      color: #444;
+      text-align: center;
+      outline: none;
+      cursor: pointer;
+      letter-spacing: .1rem; 
+      transition: .2s ease-in-out;
+      box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                  -6px -6px 10px rgba(255, 255, 255, .5),
+                  6px 6px 8px rgba(255, 255, 255, .075),
+                  6px 6px 10px rgba(0, 0, 0, .15);
+    }
+  
+    /* .Properties:hover, .Properties:active{
+      height:300px;
+       width:300px
+    } */
+  
+    .header{
+        margin-top: 8px;
+        margin-left: -30px;
+        text-align: left;
+    }
+  
+  
+    .neumorphic-btn {
+      font-size: 20px;
+      border: none;
+      width: 30px;
+      height: 30px;
+      padding: 10px 10px;
+      margin-left: 112px;
+      margin-top: 3px;
+      border-radius: 40px;
+      position: absolute;
+      color: #6D7587;
+       /*box-shadow: 3px 4px 6px 1px rgba(0, 0, 0, 0.3), 
+                  -2px -2px 4px 2px rgba(255, 255, 255, 1), 
+                  inset -14px -14px 20px -10px rgba(0, 0, 0, 0.1),
+                  inset 14px 14px 20px -10px rgba(255, 255, 255, 0.5) !important;  */
+      /* box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+                  -7px -7px 20px rgba(255, 255, 255, 1),
+                  inset 0px 0px 4px rgba(255, 255, 255, .2),
+                  inset 7px 7px 15px rgba(55, 84, 170, 0),
+                  inset -7px -7px 20px rgba(255, 255, 255, 0),
+                  0px 0px 4px rgba(255, 255, 255, 0) !important; */
+      transition: box-shadow .25s ease !important;
+    }
+    
+    .neumorphic-btn:active,.save:active {  
+      box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+                  -7px -7px 20px rgba(255, 255, 255, 1),
+                  inset 0px 0px 4px rgba(255, 255, 255, 0),
+                  inset 7px 7px 15px rgba(55, 84, 170, .15),
+                  inset -7px -7px 20px rgba(255, 255, 255, 1),
+                  0px 0px 4px rgba(255, 255, 255, .2) !important;
+    }
+  
+  
+    .neumorphic-checkbox::after {
+      content: '';
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 2px solid #a3aab9;
+      background: transparent;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all .25s ease;
+    }
+    
+    /* .neumorphic-checkbox_active {  
+      box-shadow: 7px 7px 15px rgba(55, 84, 170, .15),
+                  -7px -7px 20px rgba(255, 255, 255, 1),
+                  inset 0px 0px 4px rgba(255, 255, 255, 0),
+                  inset 7px 7px 15px rgba(55, 84, 170, .15),
+                  inset -7px -7px 20px rgba(255, 255, 255, 1),
+                  0px 0px 4px rgba(255, 255, 255, .2) !important;
+    } */
+    
+    .neumorphic-checkbox_active::after {
+      background-color: #a3aab9;
+    }
+
+   .options
+   {
+       
+       display:none;
+       margin-top: 60px;
+       padding:3px;
+       
+       background-color: #efefef;
+       border: none;
+       border-radius: .5rem;
+       color: #444;
+       transition: .2s ease-in-out;
+       box-shadow: -6px -6px 14px rgba(255, 255, 255, .7),
+                  -6px -6px 10px rgba(255, 255, 255, .5),
+                  6px 6px 8px rgba(255, 255, 255, .075),
+                  6px 6px 10px rgba(0, 0, 0, .15);
+   }
+
+   .optionTag{
+       text-align: left;
+       margin-left: 10px;
+       width: 100px;
+       padding-bottom: 5px;
+   }
+   .optionInput 
+   {
+    /* direction: rtl; */
+   width: 160px;
+   left: 120px;
+   height: 25px; 
+   padding-right: 10px!important;
+   padding-left: 10px!important;
+   border-radius: 5px;
+   border: none;
+   box-shadow: inset -2px -2px 6px rgba(255, 255, 255, .7),
+                  inset -2px -2px 4px rgba(255, 255, 255, .5),
+                  inset 2px 2px 2px rgba(255, 255, 255, .075),
+                  inset 2px 2px 4px rgba(0, 0, 0, .15);
+                
+                
+                
+}
+
+   #tags0
+   {
+      top:80px;
+      position: absolute;
+   }
+
+   #tags1
+   {
+    
+      top:120px;
+      position: absolute;
+      
+   }
+   #tags2
+   {
+      top:160px;
+      position: absolute;
+   }
+
+   #tags3
+   {
+       top:200px;
+       position: absolute;
+   }
+
+  .save
+  {
+    font-size: 20px;
+    border: none;
+    width: 35px;
+    height: 32px;
+    opacity: 0.5;
+    margin-left: 80px;
+    margin-top: 3px;
+    border-radius: 40px;
+    position: absolute;
+  }
+  button:focus { outline: none; }
+
+  /* Autocomplete
+----------------------------------*/
+.ui-autocomplete { 
+    position: absolute; 
+    cursor: default; 
+    width:100px;
+    max-height: 200px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+    /* add padding to account for vertical scrollbar */
+    padding-right: 20px;
+}       
+
+
+  .ui-menu,.ui-menu-item,a{
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+  font-size:15px;}
